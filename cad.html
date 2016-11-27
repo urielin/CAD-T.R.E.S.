@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <canvas id="myCanvas" width="300" height="300" style="border-style: double; border-width: 4px" ></canvas>
+    <script type="text/javascript">
+
+  function writeMessage(canvas, message) {
+  var context = canvas.getContext('2d');
+  context.clearRect(0, 0, 300, 40);
+  context.font = '18pt Calibri';
+  context.fillStyle = 'black';
+  context.moveTo(0,40);
+  context.lineTo(300,40);
+  context.strokeStyle = "blue";
+  context.stroke();
+  context.fillText(message, 10, 25);
+}
+function convert(y) {
+    y = Number(y);
+    var yprima = myCanvas.height  - y;
+    return yprima;
+}
+
+function getMousePos(canvas, evt,x,y) {
+  var rect = canvas.getBoundingClientRect();
+  return {
+    x: evt.clientX - rect.left,
+    y: evt.clientY - rect.top
+
+
+
+
+  };
+}
+var canvas = document.getElementById('myCanvas');
+var context = canvas.getContext('2d');
+
+canvas.addEventListener('mousemove', function(evt) {
+  var mousePos = getMousePos(canvas, evt);
+  var message ='X = '+ mousePos.x + ' , ' + 'Y=' + mousePos.y;
+  writeMessage(canvas, message);
+}, false);
+
+
+  </script>
+
+  </body>
+</html>
